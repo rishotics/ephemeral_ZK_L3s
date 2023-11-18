@@ -1,0 +1,24 @@
+[package]
+name = "plonky2_ecdsa"
+description = "ECDSA gadget for Plonky2"
+version = "0.1.0"
+license = "MIT OR Apache-2.0"
+edition = "2021"
+
+[features]
+parallel = ["plonky2_maybe_rayon/parallel", "plonky2/parallel"]
+std = ["plonky2/std", "anyhow/std", "itertools/use_std"]
+default = ["parallel", "std"]
+
+[dependencies]
+anyhow = { version = "1.0.40", default-features = false }
+itertools = { version = "0.10.0", default-features = false }
+plonky2_maybe_rayon = { version = "0.1.0", default-features = false }
+num = { version = "0.4.0", default-features = false }
+plonky2_u32 = { git = "https://github.com/succinctlabs/plonky2-u32.git", branch = "tamir/build_issues"}
+plonky2 = { git = "https://github.com/succinctlabs/plonky2.git"}
+serde = { version = "1.0", default-features = false, features = ["derive"] }
+hex = "0.4.3"
+
+[dev-dependencies]
+rand = { version = "0.8.4", default-features = false, features = ["getrandom"] }
