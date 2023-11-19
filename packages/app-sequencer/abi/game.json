@@ -1,0 +1,116 @@
+{
+    "_format": "hh-sol-artifact-1",
+    "contractName": "Game",
+    "sourceName": "src/Game.sol",
+    "abi": [
+      {
+        "inputs": [],
+        "name": "playerAChoose",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_choose",
+            "type": "uint256"
+          }
+        ],
+        "name": "playerAMoveChoose",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_guess",
+            "type": "uint256"
+          }
+        ],
+        "name": "playerAMoveGuessForPlayerB",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "playerAWin",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "playerBChoose",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_choose",
+            "type": "uint256"
+          }
+        ],
+        "name": "playerBMoveChoose",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_guess",
+            "type": "uint256"
+          }
+        ],
+        "name": "playerBMoveGuessForPlayerA",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "playerBWin",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ],
+    "bytecode": "0x608060405260008055600060015573f39fd6e51aad88f6f4ce6ab8827279cfffb92266600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055507370997970c51812dc3a010c7d01b50e0d17dc79c8600360006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055503480156100c357600080fd5b50610491806100d36000396000f3fe608060405234801561001057600080fd5b50600436106100885760003560e01c80639e49b7901161005b5780639e49b790146100ff578063a95697a71461011d578063abf4ef7b1461013b578063ae0e359a1461015957610088565b80634c8076451461008d57806356a0751b146100a95780637681daa7146100c5578063898bb9d7146100e1575b600080fd5b6100a760048036038101906100a2919061038d565b610175565b005b6100c360048036038101906100be919061038d565b6101d9565b005b6100df60048036038101906100da919061038d565b61023d565b005b6100e96102bc565b6040516100f691906103c9565b60405180910390f35b6101076102c2565b60405161011491906103c9565b60405180910390f35b6101256102c8565b60405161013291906103c9565b60405180910390f35b6101436102ce565b60405161015091906103c9565b60405180910390f35b610173600480360381019061016e919061038d565b6102d4565b005b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146101cf57600080fd5b8060048190555050565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161461023357600080fd5b8060058190555050565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161461029757600080fd5b60045481036102b957600160008154809291906102b390610413565b91905055505b50565b60055481565b60005481565b60045481565b60015481565b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161461032e57600080fd5b600554810361034f5760008081548092919061034990610413565b91905055505b50565b600080fd5b6000819050919050565b61036a81610357565b811461037557600080fd5b50565b60008135905061038781610361565b92915050565b6000602082840312156103a3576103a2610352565b5b60006103b184828501610378565b91505092915050565b6103c381610357565b82525050565b60006020820190506103de60008301846103ba565b92915050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b600061041e82610357565b91507fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff82036104505761044f6103e4565b5b60018201905091905056fea264697066735822122080bac9b1b0606694d4f99afe623d3d15be98a455c21e1c3328750ab6da24ac0564736f6c63430008120033",
+    "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100885760003560e01c80639e49b7901161005b5780639e49b790146100ff578063a95697a71461011d578063abf4ef7b1461013b578063ae0e359a1461015957610088565b80634c8076451461008d57806356a0751b146100a95780637681daa7146100c5578063898bb9d7146100e1575b600080fd5b6100a760048036038101906100a2919061038d565b610175565b005b6100c360048036038101906100be919061038d565b6101d9565b005b6100df60048036038101906100da919061038d565b61023d565b005b6100e96102bc565b6040516100f691906103c9565b60405180910390f35b6101076102c2565b60405161011491906103c9565b60405180910390f35b6101256102c8565b60405161013291906103c9565b60405180910390f35b6101436102ce565b60405161015091906103c9565b60405180910390f35b610173600480360381019061016e919061038d565b6102d4565b005b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146101cf57600080fd5b8060048190555050565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161461023357600080fd5b8060058190555050565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161461029757600080fd5b60045481036102b957600160008154809291906102b390610413565b91905055505b50565b60055481565b60005481565b60045481565b60015481565b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161461032e57600080fd5b600554810361034f5760008081548092919061034990610413565b91905055505b50565b600080fd5b6000819050919050565b61036a81610357565b811461037557600080fd5b50565b60008135905061038781610361565b92915050565b6000602082840312156103a3576103a2610352565b5b60006103b184828501610378565b91505092915050565b6103c381610357565b82525050565b60006020820190506103de60008301846103ba565b92915050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b600061041e82610357565b91507fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff82036104505761044f6103e4565b5b60018201905091905056fea264697066735822122080bac9b1b0606694d4f99afe623d3d15be98a455c21e1c3328750ab6da24ac0564736f6c63430008120033",
+    "linkReferences": {},
+    "deployedLinkReferences": {}
+  }
+  

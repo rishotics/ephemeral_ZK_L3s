@@ -1,0 +1,44 @@
+{
+  "name": "@byor/node",
+  "version": "0.1.0",
+  "private": true,
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "test": "mocha",
+    "clean": "rm -rf build",
+    "prebuild": "yarn clean",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node -r esbuild-register src/",
+    "prestart:clean": "rm -rf main.db",
+    "start:clean": "yarn start",
+    "format:fix": "prettier --write .",
+    "format": "prettier --check .",
+    "lint:fix": "yarn lint --fix",
+    "lint": "eslint --ext .ts,.tsx --max-warnings 0 src scripts",
+    "typecheck": "tsc --noEmit",
+    "seeder": "node -r esbuild-register scripts/seeder"
+  },
+  "devDependencies": {
+    "@sinonjs/fake-timers": "^10.2.0",
+    "@types/cors": "^2.8.13",
+    "@types/sinonjs__fake-timers": "^8.1.2",
+    "@types/supertest": "^2.0.12",
+    "supertest": "^6.3.3"
+  },
+  "dependencies": {
+    "@byor/shared": "*",
+    "@l2beat/backend-tools": "^0.4.0",
+    "@trpc/server": "^10.28.1",
+    "@types/lodash": "^4.14.194",
+    "abitype": "^0.8.4",
+    "chalk": "^4.1.2",
+    "cmd-ts": "^0.12.1",
+    "cors": "^2.8.5",
+    "drizzle-orm": "^0.25.4",
+    "lodash": "^4.17.21",
+    "postgres": "^3.3.5",
+    "viem": "^1.15.3",
+    "zod": "^3.21.4"
+  }
+}

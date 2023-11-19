@@ -1,0 +1,89 @@
+.play-container  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20%;
+}
+
+.play-container h1 {
+    color: #45443f;
+    font-family: 'Comic Sans MS', 'Arial';
+    font-size: 2em;
+    margin-top: 10vh;
+}
+
+.play-btn {
+    background-color: #88bd57;
+    text-align: center;
+    font-size: 30px;
+    color: #45443f;
+    font-family: 'Comic Sans MS', 'Arial';
+    border: 1px solid white;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 30px 64px;
+    margin-left: 5%;
+}
+
+.play-btn:hover {
+    background-color: #82d437; /* Darker red on hover */
+  }
+
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  .processing-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .step-text {
+    font-size: 25px;
+    font-family: 'Comic Sans MS', 'Arial';
+    color: #333; /* Change the color as needed */
+    animation: blink 1s infinite; /* Adjust the animation duration as needed */
+  }
+  
+  .visible {
+    display: block;
+  }
+  
+  .hidden {
+    display: none;
+  }
+
+  .player-a-img {
+    height: 200px;
+    width: 200px;
+  }
+
+  .player-b-img {
+    height: 200px;
+    width: 350px;
+  }
+
+  .player-1 {
+    font-size: 25px;
+    font-family: 'Comic Sans MS', 'Arial';
+    color: #333; /* Change the color as needed */
+    text-align: center;
+  }
+
+  .player-2 {
+    font-size: 25px;
+    font-family: 'Comic Sans MS', 'Arial';
+    color: #333; /* Change the color as needed */
+    text-align: center;
+  }
+
+  .winner { 
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Comic Sans MS', 'Arial';
+    color: #333; /* Change the color as needed */
+  }
