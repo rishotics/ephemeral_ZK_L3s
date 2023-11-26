@@ -7,6 +7,11 @@ template Main(nTurns){
     // private_inputs:
     // numbers_chosen_by_A : vec [ ],
     // numbers_guessed_by_B : vec [ ],
+
+    signal input step_in[2];
+
+    signal output step_out[2];
+
     signal input numbers_chosen_by_A[nTurns];
     signal input numbers_guessed_by_B[nTurns];
 
@@ -40,6 +45,22 @@ template Main(nTurns){
     checkLessThan.in[1] <== twiceSum;
 
     winner === checkLessThan.out;
+
+    step_out[0] <== step_in[0];
+    step_out[1] <== step_in[1];
 }
 
-component main { public [hashA, hashB, winner] } = Main(5);
+component main { public [step_in] } = Main(5);
+
+// template Example () {
+//     signal input step_in[2];
+
+//     signal output step_out[2];
+
+//     signal input adder;
+
+//     step_out[0] <== step_in[0] + adder;
+//     step_out[1] <== step_in[0] + step_in[1];
+// }
+
+// component main { public [step_in] } = Example();
