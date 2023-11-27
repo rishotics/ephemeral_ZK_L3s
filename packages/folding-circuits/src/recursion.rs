@@ -36,8 +36,8 @@ pub fn main() {
 //         format!("packages/folding-circuits/circuits/circuit_cpp/circuit", group_name),
 //         format!("packages/folding-circuits/circuits/circuit_js/circuit.wasm", group_name),
 //     ] {
-    let circuit_file = root.join("./src/recursion_test.r1cs");
-    // let circuit_file = root.join("./circuits/circuit.r1cs");
+    // let circuit_file = root.join("./src/recursion_test.r1cs");
+    let circuit_file = root.join("./circuits/circuit.r1cs");
     let r1cs = load_r1cs(&FileLocation::PathBuf(circuit_file));
     let witness_generator_wasm = root.join("./circuits/circuit_js/circuit.wasm");
 
