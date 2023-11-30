@@ -1,7 +1,7 @@
 pragma circom 2.0.0;
 
 include "../../../node_modules/circomlib/circuits/comparators.circom";
-
+include "./eff_ecdsa_membership/eff_ecdsa_to_addr.circom";
 // This circuit returns the sum of the inputs.
 // n must be greater than 0.
 template CalculateTotal(n) {
@@ -82,6 +82,16 @@ template Main(nTurns){
     signal input numbers_chosen_by_A[nTurns];
     signal input numbers_guessed_by_B[nTurns];
 
+    signal input s;
+    signal input Tx;
+    signal input Ty;
+    signal input Ux;
+    signal input Uy;
+    // signal input addr_B;
+
+    // signal input signatures_B[nTurns];
+    // signal input public_key_B;
+
     component checkEqual = IsEqual();
 
     component quin[2];
@@ -102,46 +112,20 @@ template Main(nTurns){
     checkEqual.in[0] <== quin[0].out;
     checkEqual.in[1] <== quin[1].out;
 
-    signal result <== checkEqual.out;
+    component sig = EfficientECDSA();
 
+    sig.s <== s;
+    sig.Tx <== Tx;
+    sig.Ty <== Ty;
+    sig.Ux <==  Ux;
+    sig.Uy <== Uy;
+
+    // addr_B === sig.addr;
+
+    step_out[0] <== step_in[0] + 1;
     step_out[1] <== step_in[1] - checkEqual.out + 1; 
     step_out[2] <== step_in[2] + checkEqual.out; 
 
-
-
-    // public_inputs:
-    // signal  input hashA;
-    // signal  input hashB;
-    // signal  input winner;
-
-    // component checkEqual[nTurns];
-    // for(var i=0;i<nTurns;i++)
-    // {
-    //     checkEqual[i] = IsEqual();
-    //     checkEqual[i].in[0] <== numbers_chosen_by_A[i];
-    //     checkEqual[i].in[1] <== numbers_guessed_by_B[i];
-
-    // }
-    // // log(checkEqual[nTurns-1]);
-
-    // signal outs[nTurns+1];
-    // outs[0] <== checkEqual[0].out;
-
-    // for(var i=1;i<nTurns;i++){
-    //     outs[i] <== outs[i-1] + checkEqual[i].out;
-    // }
-
-    // signal twiceSum;
-    // twiceSum <== 2 * outs[nTurns-1];
-
-    // component checkLessThan = LessThan(252);
-    // checkLessThan.in[0] <== nTurns;
-    // checkLessThan.in[1] <== twiceSum;
-
-    // winner === checkLessThan.out;
-
-    // step_out[0] <== step_in[0];
-    // step_out[1] <== step_in[1];
 }
 
 component main { public [step_in] } = Main(5);
