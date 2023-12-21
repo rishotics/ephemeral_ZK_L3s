@@ -1,7 +1,7 @@
 pragma circom 2.0.0;
 
 include "../../../node_modules/circomlib/circuits/comparators.circom";
-include "./eff_ecdsa_membership/eff_ecdsa_to_addr.circom";
+include "./eff_ecdsa_membership/eff_ecdsa.circom";
 // This circuit returns the sum of the inputs.
 // n must be greater than 0.
 template CalculateTotal(n) {
@@ -75,23 +75,18 @@ template Main(nTurns){
     // numbers_chosen_by_A : vec [ ],
     // numbers_guessed_by_B : vec [ ],
 
-    signal input step_in[3]; //state of the game [counter, times A won, times B won]
+    signal input step_in[10]; //state of the game [counter, times A won, times B won]
 
-    signal output step_out[3];
+    signal output step_out[10];
 
     signal input numbers_chosen_by_A[nTurns];
     signal input numbers_guessed_by_B[nTurns];
 
-    signal input s;
-    signal input Tx;
-    signal input Ty;
-    signal input Ux;
-    signal input Uy;
     // signal input addr_B;
 
     // signal input signatures_B[nTurns];
     // signal input public_key_B;
-
+//uncomennt
     component checkEqual = IsEqual();
 
     component quin[2];
@@ -114,17 +109,34 @@ template Main(nTurns){
 
     component sig = EfficientECDSA();
 
-    sig.s <== s;
-    sig.Tx <== Tx;
-    sig.Ty <== Ty;
-    sig.Ux <==  Ux;
-    sig.Uy <== Uy;
+    sig.s <== step_in[3];
+    sig.Tx <== step_in[4];
+    sig.Ty <== step_in[5];
+    sig.Ux <==  step_in[6];
+    sig.Uy <== step_in[7];
+    log(sig.pubKeyX);
+    log(sig.pubKeyY);
+    log(step_in[8]);
+    log(step_in[9]);
+
+    // step_in[8] === sig.pubKeyX;
 
     // addr_B === sig.addr;
 
     step_out[0] <== step_in[0] + 1;
     step_out[1] <== step_in[1] - checkEqual.out + 1; 
-    step_out[2] <== step_in[2] + checkEqual.out; 
+    step_out[2] <== step_in[2] + checkEqual.out;
+     
+    // step_out[0] <== step_in[0];
+    // step_out[1] <== step_in[1];
+    // step_out[2] <== step_in[2];
+    step_out[3] <== step_in[3];
+    step_out[4] <== step_in[4];
+    step_out[5] <== step_in[5];
+    step_out[6] <== step_in[6];
+    step_out[7] <== step_in[7];
+    step_out[8] <== step_in[8];
+    step_out[9] <== step_in[9];
 
 }
 
@@ -142,3 +154,7 @@ component main { public [step_in] } = Main(5);
 // }
 
 // component main { public [step_in] } = Example();
+// 26957127601308277818440638945036546622364016540115474929503252026794357359795
+// 3225836735311691264942223560902008698073886962829705492265472890912210016012
+// 1399918182459375147672416415597519462654171168341567080461262232778474253683
+// 24099691209996290925259367678540227198235484593389470330605641003500238088869

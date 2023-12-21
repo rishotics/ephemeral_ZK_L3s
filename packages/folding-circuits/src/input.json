@@ -1,8 +1,6 @@
 {
-    "numbers_chosen_by_A": ["1", "2", "1", "1", "1"],
-    "numbers_guessed_by_B": ["1", "1", "1", "1", "1"],
-    "hashA": "0x3bd4641fd983a174950b495b124968fccc3a3564c255d4c26f310e8815b73368",
-    "hashB": "0x3bd4641fd983a174950b495b124968fccc3a3564c255d4c26f310e8815b73368",
-    "winner": "1"
+    "numbers_chosen_by_A": ["4", "4", "4", "4", "4"],
+    "numbers_guessed_by_B": ["1", "5", "4", "2", "4"]
+
     
 }

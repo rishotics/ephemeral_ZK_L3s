@@ -6,6 +6,9 @@ use std::{
     time::Instant,
 };
 
+use serde::{Deserialize, Serialize};
+
+
 use ff::PrimeField;
 use nova_scotia::{
     circom::reader::load_r1cs, create_public_params, create_recursive_circuit, FileLocation, F1,
@@ -14,19 +17,38 @@ use nova_scotia::{
 use nova_snark::{traits::Group, CompressedSNARK, provider, PublicParams};
 use serde_json::{from_reader, Value};
 
+#[derive(Serialize, Deserialize)]
+#[allow(non_snake_case)]
+struct EffSig {
+    start_pub_input: [String; 10],
+}
 pub fn main() {
     // type G1 = provider::bn256_grumpkin::bn256::Point;
     // type G2 = provider::bn256_grumpkin::grumpkin::Point;
     
-    let iteration_count = 1;
+    let iteration_count = 5;
     let root = current_dir().unwrap();
     println!("root: {:?}", root);
 
     let x = 30;
     let y = 30;
     let n_filters = 2;
+    let sigs: EffSig = serde_json::from_str(include_str!("/Users/rishabh/projects/blockchain/ephemeral_ZK_L3s/packages/folding-circuits/src/batch.json"))
+    .unwrap();
 
-    let mut start_public_input = [F1::from_str_vartime("10").unwrap(), F1::from_str_vartime("10").unwrap()];
+    // let mut start_public_input = [F1::from_str_vartime("0").unwrap(), F1::from_str_vartime("0").unwrap(), F1::from_str_vartime("0").unwrap()];
+    let start_public_input = vec![
+        F1::from_str_vartime(&sigs.start_pub_input[0]).unwrap(),
+        F1::from_str_vartime(&sigs.start_pub_input[1]).unwrap(),
+        F1::from_str_vartime(&sigs.start_pub_input[2]).unwrap(),
+        F1::from_str_vartime(&sigs.start_pub_input[3]).unwrap(),
+        F1::from_str_vartime(&sigs.start_pub_input[4]).unwrap(),
+        F1::from_str_vartime(&sigs.start_pub_input[5]).unwrap(),
+        F1::from_str_vartime(&sigs.start_pub_input[6]).unwrap(),
+        F1::from_str_vartime(&sigs.start_pub_input[7]).unwrap(),
+        F1::from_str_vartime(&sigs.start_pub_input[8]).unwrap(),
+        F1::from_str_vartime(&sigs.start_pub_input[9]).unwrap(),
+    ];
     // for _i in 0..(x * y * n_filters) {
     //     start_public_input.push(F1::from_str_vartime("0").unwrap());
     // }
@@ -68,47 +90,47 @@ pub fn main() {
         pp.num_constraints().1
     );
 
-    // println!(
-    //     "Number of variables per step (primary circuit): {}",
-    //     pp.num_variables().0
-    // );
-    // println!(
-    //     "Number of variables per step (secondary circuit): {}",
-    //     pp.num_variables().1
-    // );
+    println!(
+        "Number of variables per step (primary circuit): {}",
+        pp.num_variables().0
+    );
+    println!(
+        "Number of variables per step (secondary circuit): {}",
+        pp.num_variables().1
+    );
 
-    // println!("Creating a RecursiveSNARK...");
-    // let start = Instant::now();
-    // let recursive_snark = create_recursive_circuit(
-    //     FileLocation::PathBuf(witness_generator_wasm),
-    //     r1cs,
-    //     private_inputs,
-    //     start_public_input.clone(),
-    //     &pp,
-    // )
-    // .unwrap();
-    // println!("RecursiveSNARK creation took {:?}", start.elapsed());
+    println!("Creating a RecursiveSNARK...");
+    let start = Instant::now();
+    let recursive_snark = create_recursive_circuit(
+        FileLocation::PathBuf(witness_generator_wasm),
+        r1cs,
+        private_inputs,
+        start_public_input.to_vec(),
+        &pp,
+    )
+    .unwrap();
+    println!("RecursiveSNARK creation took {:?}", start.elapsed());
 
-    // // TODO: empty?
-    // let z0_secondary = vec![<G2 as Group>::Scalar::zero()];
+    // TODO: empty?
+    let z0_secondary = vec![<G2 as Group>::Scalar::zero()];
 
-    // // verify the recursive SNARK
-    // println!("Verifying a RecursiveSNARK...");
-    // // println!("z0_primary: {:?}", start_public_input);
-    // // println!("z0_secondary: {:?}", z0_secondary);
-    // let start = Instant::now();
-    // let res = recursive_snark.verify(
-    //     &pp,
-    //     iteration_count,
-    //     start_public_input.clone(),
-    //     z0_secondary.clone(),
-    // );
-    // println!(
-    //     "RecursiveSNARK::verify: {:?}, took {:?}",
-    //     res.is_ok(),
-    //     start.elapsed()
-    // );
-    // assert!(res.is_ok());
+    // verify the recursive SNARK
+    println!("Verifying a RecursiveSNARK...");
+    // println!("z0_primary: {:?}", start_public_input);
+    // println!("z0_secondary: {:?}", z0_secondary);
+    let start = Instant::now();
+    let res = recursive_snark.verify(
+        &pp,
+        iteration_count,
+        start_public_input.to_vec(),
+        z0_secondary.clone(),
+    );
+    println!(
+        "RecursiveSNARK::verify: {:?}, took {:?}",
+        res.is_ok(),
+        start.elapsed()
+    );
+    assert!(res.is_ok());
 
     // let result = res.unwrap().0;
     // // println!("result: {:?}", result);
