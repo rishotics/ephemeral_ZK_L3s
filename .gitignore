@@ -1,3 +1,5 @@
 circuits/target/
 Cargo.lock
 yarn.lock
+packages/folding-circuits/target/
+circuits/target
